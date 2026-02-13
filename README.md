@@ -1,130 +1,80 @@
-# Build-a-Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS
+To finalize your startup-grade **Medibot** project, here is the comprehensive `README.md` in raw Markdown format. This guide incorporates your custom Conda environment setup, the new **Groq** and **NewsAPI** integrations, and the complete **AWS CICD** deployment workflow.
 
-# How to run?
-### STEPS:
+```markdown
+# 🩺 Medibot: AI-Powered Healthcare Intelligence
 
-Clone the repository
+**Medibot** is a next-generation healthcare dashboard providing clinical-grade medical insights. By leveraging **Retrieval-Augmented Generation (RAG)**, it ensures AI responses are grounded in verified medical literature.
 
+
+
+---
+
+## 🚀 How to Run?
+
+### STEP 01: Clone the Repository
 ```bash
-git clonehttps://github.com/entbappy/Build-a-Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS.git
+git clone [https://github.com/l-chaithanya-123/medibot-startup.git](https://github.com/l-chaithanya-123/medibot-startup.git)
+cd medibot-startup
+
 ```
-### STEP 01- Create a conda environment after opening the repository
+
+### STEP 02: Create Conda Environment
 
 ```bash
 conda create -n medibot python=3.10 -y
-```
-
-```bash
 conda activate medibot
+
 ```
 
+### STEP 03: Install Requirements
 
-### STEP 02- install the requirements
 ```bash
 pip install -r requirements.txt
+
 ```
 
+### STEP 04: Setup Environment Variables
 
-### Create a `.env` file in the root directory and add your Pinecone & openai credentials as follows:
+Create a `.env` file in the root directory:
 
 ```ini
-PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-OPENAI_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+PINECONE_API_KEY = "your_pinecone_key"
+GROQ_API_KEY = "your_groq_api_key"
+NEWS_API_KEY = "your_news_api_key"
+
 ```
 
+### STEP 05: Index Data & Launch
 
 ```bash
-# run the following command to store embeddings to pinecone
+# Store embeddings to Pinecone
 python store_index.py
-```
 
-```bash
-# Finally run the following command
+# Launch the Flask Server
 python app.py
+
 ```
 
-Now,
-```bash
-open up localhost:
+**Localhost:** `http://127.0.0.1:8080`
+
+---
+
+## 🛠️ Tech Stack
+
+* **AI/LLM:** LangChain, Groq (Llama 3.3), HuggingFace Embeddings.
+* **Database:** Pinecone Vector DB.
+* **Backend:** Flask.
+* **Frontend:** Startup-style UI (Inter font, Emerald/Slate theme).
+* **Data Source:** NewsAPI for live medical updates.
+
+---
+
+## ⚖️ Medical Disclaimer
+
+Medibot provides informational content only. It is **not** a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for medical concerns.
+
 ```
 
+Would you like me to help you generate the **`Dockerfile`** needed for the ECR push in your CICD pipeline?
 
-### Techstack Used:
-
-- Python
-- LangChain
-- Flask
-- GPT
-- Pinecone
-
-
-
-# AWS-CICD-Deployment-with-Github-Actions
-
-## 1. Login to AWS console.
-
-## 2. Create IAM user for deployment
-
-	#with specific access
-
-	1. EC2 access : It is virtual machine
-
-	2. ECR: Elastic Container registry to save your docker image in aws
-
-
-	#Description: About the deployment
-
-	1. Build docker image of the source code
-
-	2. Push your docker image to ECR
-
-	3. Launch Your EC2 
-
-	4. Pull Your image from ECR in EC2
-
-	5. Lauch your docker image in EC2
-
-	#Policy:
-
-	1. AmazonEC2ContainerRegistryFullAccess
-
-	2. AmazonEC2FullAccess
-
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 315865595366.dkr.ecr.us-east-1.amazonaws.com/medicalbot
-
-	
-## 4. Create EC2 machine (Ubuntu) 
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-   - AWS_ACCESS_KEY_ID
-   - AWS_SECRET_ACCESS_KEY
-   - AWS_DEFAULT_REGION
-   - ECR_REPO
-   - PINECONE_API_KEY
-   - OPENAI_API_KEY
+```
